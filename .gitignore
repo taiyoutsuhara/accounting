@@ -57,3 +57,10 @@ rsconnect/
 /*_files/
 
 # End of https://www.toptal.com/developers/gitignore/api/r
+
+### Others ###
+*.docx
+*.xlsx
+*.pptx
+not_use/
+split_sources/
