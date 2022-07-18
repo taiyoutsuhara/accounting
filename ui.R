@@ -37,6 +37,17 @@ shinyUI(
                           tabPanel("毎月の費目別変動費用", dataTableOutput('dt_variable_costs'))
                         )
                       )
+             ),
+             tabPanel("時系列グラフ",
+                      mainPanel(
+                        tabsetPanel(
+                          type = "tabs",
+                          tabPanel("毎月の収入と費用", plotOutput('fig_total')),
+                          tabPanel("毎月の項目別収入", plotOutput('fig_respective_incomes')),
+                          tabPanel("毎月の費目別固定費用", plotOutput('fig_fixed_costs')),
+                          tabPanel("毎月の費目別変動費用", plotOutput('fig_variable_costs'))
+                        )
+                      )
              )
   )
 )

@@ -81,5 +81,58 @@ server = function(input, output, session) {
     output$dt_divided_costs = renderDataTable(divided_costs())
     output$dt_fixed_costs = renderDataTable(fixed_costs())
     output$dt_variable_costs = renderDataTable(variable_costs())
+    
+    
+    # Equip figures #
+    # Total graph
+    total_income_and_costs = rbind(total_incomes(),
+                                   total_costs(),
+                                   divided_costs())
+    output$fig_total =
+      renderPlot(
+        ggplot(
+          total_income_and_costs,
+          aes(x = `月`, y = `金額（円）`, colour = `区分`, shape = `区分`)
+        ) +
+          geom_line() +
+          geom_point() +
+          guides(colour = guide_legend(title = "")) +
+          labs(title = "収入と費用", x = "月", y = "金額（円）")
+      )
+    
+    # Graphs with legends
+    output$fig_respective_incomes =
+      renderPlot(
+        ggplot(
+          respective_incomes(),
+          aes(x = `月`, y = `金額（円）`, colour = `項目`, shape = `項目`)
+        ) +
+          geom_line() +
+          geom_point() +
+          guides(colour = guide_legend(title = "")) +
+          labs(title = "項目別収入", x = "月", y = "金額（円）")
+      )
+    output$fig_fixed_costs =
+      renderPlot(
+        ggplot(
+          fixed_costs(),
+          aes(x = `月`, y = `金額（円）`, colour = `費目`, shape = `費目`)
+        ) +
+          geom_line() +
+          geom_point() +
+          guides(colour = guide_legend(title = "")) +
+          labs(title = "費目別固定費用", x = "月", y = "金額（円）")
+      )
+    output$fig_variable_costs =
+      renderPlot(
+        ggplot(
+          variable_costs(),
+          aes(x = `月`, y = `金額（円）`, colour = `費目`, shape = `費目`)
+        ) +
+          geom_line() +
+          geom_point() +
+          guides(colour = guide_legend(title = "")) +
+          labs(title = "費目別変動費用", x = "月", y = "金額（円）")
+      )
   })
 }
