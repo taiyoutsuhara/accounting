@@ -83,11 +83,15 @@ server = function(input, output, session) {
     output$dt_variable_costs = renderDataTable(variable_costs())
     
     
-    # Equip figures #
+    # Draw figures #
+    const_seq_months = c(1:12)
     # Total graph
     total_income_and_costs = rbind(total_incomes(),
                                    total_costs(),
                                    divided_costs())
+    const_seq_ssm_total = seq(0,
+                              length(unique(total_income_and_costs$`区分`))
+    )
     output$fig_total =
       renderPlot(
         ggplot(
@@ -95,12 +99,18 @@ server = function(input, output, session) {
           aes(x = `月`, y = `金額（円）`, colour = `区分`, shape = `区分`)
         ) +
           geom_line() +
+          scale_x_continuous(breaks = const_seq_months) +
           geom_point() +
+          scale_shape_manual(values = const_seq_ssm_total) +
           guides(colour = guide_legend(title = "")) +
           labs(title = "収入と費用", x = "月", y = "金額（円）")
       )
     
     # Graphs with legends
+    # Respective incomes
+    const_seq_ssm_ri = seq(0,
+                           length(unique(respective_incomes()$`項目`))
+    )
     output$fig_respective_incomes =
       renderPlot(
         ggplot(
@@ -108,10 +118,17 @@ server = function(input, output, session) {
           aes(x = `月`, y = `金額（円）`, colour = `項目`, shape = `項目`)
         ) +
           geom_line() +
+          scale_x_continuous(breaks = const_seq_months) +
           geom_point() +
+          scale_shape_manual(values = const_seq_ssm_ri) +
           guides(colour = guide_legend(title = "")) +
           labs(title = "項目別収入", x = "月", y = "金額（円）")
       )
+    
+    # Fixed costs
+    const_seq_ssm_fc = seq(0,
+                           length(unique(fixed_costs()$`費目`))
+    )
     output$fig_fixed_costs =
       renderPlot(
         ggplot(
@@ -119,10 +136,17 @@ server = function(input, output, session) {
           aes(x = `月`, y = `金額（円）`, colour = `費目`, shape = `費目`)
         ) +
           geom_line() +
+          scale_x_continuous(breaks = const_seq_months) +
           geom_point() +
+          scale_shape_manual(values = const_seq_ssm_fc) +
           guides(colour = guide_legend(title = "")) +
           labs(title = "費目別固定費用", x = "月", y = "金額（円）")
       )
+    
+    # Variable costs
+    const_seq_ssm_vc = seq(0,
+                           length(unique(variable_costs()$`費目`))
+    )
     output$fig_variable_costs =
       renderPlot(
         ggplot(
@@ -130,7 +154,9 @@ server = function(input, output, session) {
           aes(x = `月`, y = `金額（円）`, colour = `費目`, shape = `費目`)
         ) +
           geom_line() +
+          scale_x_continuous(breaks = const_seq_months) +
           geom_point() +
+          scale_shape_manual(values = const_seq_ssm_vc) +
           guides(colour = guide_legend(title = "")) +
           labs(title = "費目別変動費用", x = "月", y = "金額（円）")
       )
