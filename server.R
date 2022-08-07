@@ -20,7 +20,7 @@ server = function(input, output, session) {
       return(result_of_ti)
     })
     
-    # Conduct respective incomes
+    # Calculate respective incomes
     respective_incomes = reactive({
       input_for_ri = input_file_of_incomes()
       input_for_lg = input_file_of_legends()
@@ -59,7 +59,7 @@ server = function(input, output, session) {
       return(result_of_dc)
     })
     
-    # Conduct respective costs
+    # Compute respective costs
     fixed_costs = reactive({
       input_for_rc = input_file_of_costs()
       input_for_lg = input_file_of_legends()
@@ -74,7 +74,7 @@ server = function(input, output, session) {
     })
     
     
-    # Equip data tables #
+    # Create data tables #
     output$dt_total_incomes = renderDataTable(total_incomes())
     output$dt_respective_incomes = renderDataTable(respective_incomes())
     output$dt_total_costs = renderDataTable(total_costs())
