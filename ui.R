@@ -42,10 +42,38 @@ shinyUI(
                       mainPanel(
                         tabsetPanel(
                           type = "tabs",
-                          tabPanel("毎月の収入と費用", plotOutput('fig_total')),
-                          tabPanel("毎月の項目別収入", plotOutput('fig_respective_incomes')),
-                          tabPanel("毎月の費目別固定費用", plotOutput('fig_fixed_costs')),
-                          tabPanel("毎月の費目別変動費用", plotOutput('fig_variable_costs'))
+                          tabPanel("毎月の収入と費用",
+                                   plotOutput('fig_total',
+                                              dblclick = dblclickOpts(
+                                                id = 'fig_total_dblclick'
+                                              )
+                                   ),
+                                   verbatimTextOutput("fig_total_dblclick_info")
+                          ),
+                          tabPanel("毎月の項目別収入",
+                                   plotOutput('fig_respective_incomes',
+                                              dblclick = dblclickOpts(
+                                                id = 'fig_ri_dblclick'
+                                              )
+                                   ),
+                                   verbatimTextOutput("fig_ri_dblclick_info")
+                          ),
+                          tabPanel("毎月の費目別固定費用",
+                                   plotOutput('fig_fixed_costs',
+                                              dblclick = dblclickOpts(
+                                                id = 'fig_fc_dblclick'
+                                              )
+                                   ),
+                                   verbatimTextOutput("fig_fc_dblclick_info")
+                          ),
+                          tabPanel("毎月の費目別変動費用",
+                                   plotOutput('fig_variable_costs',
+                                              dblclick = dblclickOpts(
+                                                id = 'fig_vc_dblclick'
+                                              )
+                                   ),
+                                   verbatimTextOutput("fig_vc_dblclick_info")
+                          )
                         )
                       )
              )

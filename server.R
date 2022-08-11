@@ -105,6 +105,10 @@ server = function(input, output, session) {
           guides(colour = guide_legend(title = "")) +
           labs(title = "収入と費用", x = "月", y = "金額（円）")
       )
+    output$fig_total_dblclick_info = renderPrint({
+      cat("ダブルクリックした箇所の情報:\n")
+      str(input$fig_total_dblclick)
+    })
     
     # Graphs with legends
     # Respective incomes
@@ -124,6 +128,10 @@ server = function(input, output, session) {
           guides(colour = guide_legend(title = "")) +
           labs(title = "項目別収入", x = "月", y = "金額（円）")
       )
+    output$fig_ri_dblclick_info = renderPrint({
+      cat("ダブルクリックした箇所の情報:\n")
+      str(input$fig_ri_dblclick)
+    })
     
     # Fixed costs
     const_seq_ssm_fc = seq(0,
@@ -142,6 +150,10 @@ server = function(input, output, session) {
           guides(colour = guide_legend(title = "")) +
           labs(title = "費目別固定費用", x = "月", y = "金額（円）")
       )
+    output$fig_fc_dblclick_info = renderPrint({
+      cat("ダブルクリックした箇所の情報:\n")
+      str(input$fig_fc_dblclick)
+    })
     
     # Variable costs
     const_seq_ssm_vc = seq(0,
@@ -160,5 +172,9 @@ server = function(input, output, session) {
           guides(colour = guide_legend(title = "")) +
           labs(title = "費目別変動費用", x = "月", y = "金額（円）")
       )
+    output$fig_vc_dblclick_info = renderPrint({
+      cat("ダブルクリックした箇所の情報:\n")
+      str(input$fig_vc_dblclick)
+    })
   })
 }
