@@ -83,6 +83,33 @@ server = function(input, output, session) {
     output$dt_variable_costs = renderDataTable(variable_costs())
     
     
+    # Set download data #
+    output$dl_total_incomes = downloadHandler(
+      filename = "毎月の収入.xlsx",
+      content = function(file){write.xlsx(total_incomes(), file)}
+    )
+    output$dl_respective_incomes = downloadHandler(
+      filename = "毎月の項目別収入.xlsx",
+      content = function(file){write.xlsx(respective_incomes(), file)}
+    )
+    output$dl_total_costs = downloadHandler(
+      filename = "毎月の費用.xlsx",
+      content = function(file){write.xlsx(total_costs(), file)}
+    )
+    output$dl_divided_costs = downloadHandler(
+      filename = "毎月の固定・変動費用.xlsx",
+      content = function(file){write.xlsx(divided_costs(), file)}
+    )
+    output$dl_fixed_costs = downloadHandler(
+      filename = "毎月の費目別固定費用.xlsx",
+      content = function(file){write.xlsx(fixed_costs(), file)}
+    )
+    output$dl_variable_costs = downloadHandler(
+      filename = "毎月の費目別変動費用.xlsx",
+      content = function(file){write.xlsx(variable_costs(), file)}
+    )
+    
+    
     # Draw figures #
     const_seq_months = c(1:12)
     # Total graph

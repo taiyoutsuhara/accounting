@@ -33,22 +33,28 @@ shinyUI(
                         tabsetPanel(
                           type = "tabs",
                           tabPanel("毎月の収入",
-                                   dataTableOutput('dt_total_incomes')
+                                   dataTableOutput('dt_total_incomes'),
+                                   downloadButton('dl_total_incomes', 'Download')
                           ),
                           tabPanel("毎月の項目別収入",
-                                   dataTableOutput('dt_respective_incomes')
+                                   dataTableOutput('dt_respective_incomes'),
+                                   downloadButton('dl_respective_incomes', 'Download')
                           ),
                           tabPanel("毎月の費用",
-                                   dataTableOutput('dt_total_costs')
+                                   dataTableOutput('dt_total_costs'),
+                                   downloadButton('dl_total_costs', 'Download')
                           ),
                           tabPanel("毎月の固定/変動費用",
-                                   dataTableOutput('dt_divided_costs')
+                                   dataTableOutput('dt_divided_costs'),
+                                   downloadButton('dl_divided_costs', 'Download')
                           ),
                           tabPanel("毎月の費目別固定費用",
-                                   dataTableOutput('dt_fixed_costs')
+                                   dataTableOutput('dt_fixed_costs'),
+                                   downloadButton('dl_fixed_costs', 'Download')
                           ),
                           tabPanel("毎月の費目別変動費用",
-                                   dataTableOutput('dt_variable_costs')
+                                   dataTableOutput('dt_variable_costs'),
+                                   downloadButton('dl_variable_costs', 'Download')
                           )
                         )
                       )
